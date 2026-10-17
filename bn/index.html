@@ -826,7 +826,7 @@
 
                 const script = document.createElement("script");
                 script.id = "dynamic-section-script";
-                script.src = `bn/${sectionName}.js`;
+                script.src = `../bn/${sectionName}.js`;
                 script.onload = () => {
                     if (typeof window.renderSection === "function") {
                         window.renderSection(sectionContainer);
