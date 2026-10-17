@@ -1,10 +1,10 @@
 window.renderSection = function(container) {
     container.innerHTML = `
     <style>
-        /* Hero Video Section - পুরো পাতা জুড়ে ব্যাকগ্রাউন্ড ভিডিও */
+        /* Hero Video Section */
         .hero-video-container {
             position: relative;
-            width: calc(100% + 80px); /* ডানে-বামে প্যাডিং কভার করার জন্য */
+            width: calc(100% + 80px);
             margin-left: -40px;
             margin-right: -40px;
             margin-top: -40px;
@@ -24,7 +24,7 @@ window.renderSection = function(container) {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* ক্লিক বা ডাউনলোড প্রতিরোধ করতে */
+            pointer-events: none;
         }
 
         .hero-video-overlay {
@@ -40,27 +40,26 @@ window.renderSection = function(container) {
             justify-content: center;
             text-align: center;
             padding: 20px;
+            gap: 20px;
         }
 
         .hero-welcome-text {
             font-size: 2.8rem;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 15px;
             text-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
 
         .scroll-down-hint {
-            position: absolute;
-            bottom: 35px; /* নিচে সামান্য ফাঁকা জায়গা রাখার জন্য */
             display: flex;
             flex-direction: column;
             align-items: center;
             color: #f8fafc;
             font-size: 0.95rem;
             font-weight: 600;
-            gap: 8px;
+            gap: 6px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            margin-top: 10px;
         }
 
         .scroll-down-hint i {
@@ -72,6 +71,19 @@ window.renderSection = function(container) {
         @keyframes bounce-arrow {
             0%, 100% { transform: translateY(0); text-shadow: 0 0 5px var(--primary-color); }
             50% { transform: translateY(6px); text-shadow: 0 0 15px var(--primary-color); }
+        }
+
+        /* Fade In / Fade Out Animation Base Classes */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .article-title {
@@ -140,7 +152,7 @@ window.renderSection = function(container) {
             gap: 15px;
             align-items: flex-start;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .service-item:hover {
@@ -286,167 +298,199 @@ window.renderSection = function(container) {
             </div>
         </div>
 
-        <header>
-            <h2 class="h2 article-title">আমার সম্পর্কে</h2>
-        </header>
+        <!-- ফেড ইন/আউট ইফেক্ট সহ সেকশনসমূহ -->
+        <div class="fade-section">
+            <header>
+                <h2 class="h2 article-title">আমার সম্পর্কে</h2>
+            </header>
 
-        <section class="about-text">
-            <p>
-                আমি <b>উৎসব সরকার</b>, বর্তমানে ঢাকা, বাংলাদেশে বসবাস করছি। আমার বাবার নাম উত্তম কুমার সরকার এবং মায়ের নাম শিমা রানী প্রামাণিক। যদিও এখন আমি ঢাকায় থাকি, তবে আমার শিক্ষাজীবনের একটি দীর্ঘ সময় কেটেছে রাজশাহীতে; যেখানে আমি উচ্চ মাধ্যমিক (HSC) পর্যন্ত পড়াশোনা সম্পন্ন করেছি। এরপর উচ্চশিক্ষা অর্জন, অভিজ্ঞতা লাভ এবং পেশাগত দক্ষতা বৃদ্ধির জন্য আমি ঢাকায় আসি।
-            </p>
+            <section class="about-text">
+                <p>
+                    আমি <b>উৎসব সরকার</b>, বর্তমানে ঢাকা, বাংলাদেশে বসবাস করছি। আমার বাবার নাম উত্তম কুমার সরকার এবং মায়ের নাম শিমা রানী প্রামাণিক। যদিও এখন আমি ঢাকায় থাকি, তবে আমার শিক্ষাজীবনের একটি দীর্ঘ সময় কেটেছে রাজশাহীতে; যেখানে আমি উচ্চ মাধ্যমিক (HSC) পর্যন্ত পড়াশোনা সম্পন্ন করেছি। এরপর উচ্চশিক্ষা অর্জন, অভিজ্ঞতা লাভ এবং পেশাগত দক্ষতা বৃদ্ধির জন্য আমি ঢাকায় আসি।
+                </p>
 
-            <p>
-                পেশাগত উন্নয়নের অংশ হিসেবে আমি SPSB, BDOSN এবং MASLAB-এর মতো প্রতিষ্ঠানে ইন্টার্ন হিসেবে কাজ করেছি। এই অভিজ্ঞতাগুলো আমাকে বাস্তবসম্মত জ্ঞান, দলগত কাজ করার দক্ষতা এবং প্রফেশনাল পরিবেশ সম্পর্কে ধারণা অর্জন করতে সহায়তা করেছে।
-            </p>
+                <p>
+                    পেশাগত উন্নয়নের অংশ হিসেবে আমি SPSB, BDOSN এবং MASLAB-এর মতো প্রতিষ্ঠানে ইন্টার্ন হিসেবে কাজ করেছি। এই অভিজ্ঞতাগুলো আমাকে বাস্তবসম্মত জ্ঞান, দলগত কাজ করার দক্ষতা এবং প্রফেশনাল পরিবেশ সম্পর্কে ধারণা অর্জন করতে সহায়তা করেছে।
+                </p>
 
-            <p>
-                আমার সবচেয়ে বড় শখ ও ভালোলাগা হলো কোডিং, ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপস তৈরি, ফটোগ্রাফি, লেখালেখি এবং ভ্রমণ। নতুন নতুন জায়গা ঘুরে দেখা এবং অজানা সব সৌন্দর্য এক্সপ্লোর করা আমার একটি নেশা; আমি ঘুরতে ভীষণ ভালোবাসি। ক্যামেরা ফ্রেমে প্রকৃতির বৈচিত্র্য বন্দি করা, সৃজনশীল লেখালেখি করা এবং নতুন প্রযুক্তি নিয়ে কাজ করার মাঝে আমি আনন্দ খুঁজে পাই।
-            </p>
+                <p>
+                    আমার সবচেয়ে বড় শখ ও ভালোলাগা হলো কোডিং, ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপস তৈরি, ফটোগ্রাফি, লেখালেখি এবং ভ্রমণ। নতুন নতুন জায়গা ঘুরে দেখা এবং অজানা সব সৌন্দর্য এক্সপ্লোর করা আমার একটি নেশা; আমি ঘুরতে ভীষণ ভালোবাসি। ক্যামেরা ফ্রেমে প্রকৃতির বৈচিত্র্য বন্দি করা, সৃজনশীল লেখালেখি করা এবং নতুন প্রযুক্তি নিয়ে কাজ করার মাঝে আমি আনন্দ খুঁজে পাই।
+                </p>
 
-            <p>
-                আমার মূল লক্ষ্য হলো একজন দক্ষ ডেভেলপার হওয়া। এই লক্ষ্য সামনে রেখে আমি নিয়মিত নতুন জিনিস শিখছি, আমার দক্ষতা উন্নত করছি এবং প্রযুক্তি জগতে সফল ক্যারিয়ার গড়ার জন্য কাজ করে যাচ্ছি।
-            </p>
-        </section>
+                <p>
+                    আমার মূল লক্ষ্য হলো একজন দক্ষ ডেভেলপার হওয়া। এই লক্ষ্য সামনে রেখে আমি নিয়মিত নতুন জিনিস শিখছি, আমার দক্ষতা উন্নত করছি এবং প্রযুক্তি জগতে সফল ক্যারিয়ার গড়ার জন্য কাজ করে যাচ্ছি।
+                </p>
+            </section>
+        </div>
 
         <!-- সার্ভিস বা আমি যা করছি সেকশন -->
-        <section class="service">
-            <h3 class="h3 service-title">আমি যা করছি</h3>
+        <div class="fade-section">
+            <section class="service">
+                <h3 class="h3 service-title">আমি যা করছি</h3>
 
-            <ul class="service-list">
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">ওয়েব ডিজাইন</h4>
-                        <p class="service-item-text">
-                            প্রফেশনাল লেভেলে সবচেয়ে আধুনিক এবং আকর্ষণীয় হাই-কোয়ালিটি ডিজাইন তৈরি।
-                        </p>
-                    </div>
-                </li>
+                <ul class="service-list">
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">ওয়েব ডিজাইন</h4>
+                            <p class="service-item-text">
+                                প্রফেশনাল লেভেলে সবচেয়ে আধুনিক এবং আকর্ষণীয় হাই-কোয়ালিটি ডিজাইন তৈরি।
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">ওয়েব ডেভেলপমেন্ট</h4>
-                        <p class="service-item-text">
-                            প্রফেশনাল মান বজায় রেখে উচ্চমানের ওয়েবসাইট ডেভেলপমেন্ট।
-                        </p>
-                    </div>
-                </li>
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">ওয়েব ডেভেলপমেন্ট</h4>
+                            <p class="service-item-text">
+                                প্রফেশনাল মান বজায় রেখে উচ্চমানের ওয়েবসাইট ডেভেলপমেন্ট।
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">মোবাইল অ্যাপস</h4>
-                        <p class="service-item-text">
-                            অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_3](start_span)[span_3](end_span)।
-                        </p>
-                    </div>
-                </li>
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">মোবাইল অ্যাপস</h4>
+                            <p class="service-item-text">
+                                অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_0](start_span)[span_0](end_span)。
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-camera-retro"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">ফটোগ্রাফি</h4>
-                        <p class="service-item-text">
-                            প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_4](start_span)[span_4](end_span)।
-                        </p>
-                    </div>
-                </li>
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-camera-retro"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">ফটোগ্রাফি</h4>
+                            <p class="service-item-text">
+                                প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_1](start_span)[span_1](end_span)。
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-pen-nib"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">লেখালেখি (Writing)</h4>
-                        <p class="service-item-text">
-                            সৃজনশীল গল্প, আর্টিকেল এবং আকর্ষণীয় কন্টেন্ট রাইটিং।
-                        </p>
-                    </div>
-                </li>
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">লেখালেখি (Writing)</h4>
+                            <p class="service-item-text">
+                                সৃজনশীল গল্প, আর্টিকেল এবং আকর্ষণীয় কন্টেন্ট রাইটিং।
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="service-item">
-                    <div class="service-icon-box">
-                        <i class="fa-solid fa-plane-departure"></i>
-                    </div>
-                    <div class="service-content-box">
-                        <h4 class="h4 service-item-title">ভ্রমণ ও এক্সপ্লোরিং (Traveling)</h4>
-                        <p class="service-item-text">
-                            নতুন নতুন জায়গা ঘুরে দেখা এবং প্রকৃতির কাছাকাছি থেকে নতুন অভিজ্ঞতা অর্জন করা।
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </section>
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">ভ্রমণ ও এক্সপ্লোরিং (Traveling)</h4>
+                            <p class="service-item-text">
+                                নতুন নতুন জায়গা ঘুরে দেখা এবং প্রকৃতির কাছাকাছি থেকে নতুন অভিজ্ঞতা অর্জন করা।
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
         <!-- টেস্টিমোনিয়াল বা ক্লায়েন্ট রিভিউ সেকশন -->
-        <section class="testimonials">
-            <h3 class="h3 testimonials-title">টেস্টিমোনিয়াল (মতামত)[span_5](start_span)[span_5](end_span)</h3>
+        <div class="fade-section">
+            <section class="testimonials">
+                <h3 class="h3 testimonials-title">টেস্টিমোনিয়াল (মতামত)[span_2](start_span)[span_2](end_span)</h3>
 
-            <ul class="testimonials-list">
-                <li class="testimonials-item">
-                    <figure class="testimonials-avatar-box">
-                        <img src="./assets/images/avatar-3.png" alt="মো. মুরসালিন পারভেজ">
-                    </figure>
-                    <h4 class="h4 testimonials-item-title">মো. মুরসালিন পারভেজ</h4>
-                    <span class="testimonials-designation">ইঞ্জিনিয়ার</span>
-                    <div class="testimonials-text">
-                        <p>খুবই প্রফেশনাল এবং ফ্রেন্ডলি আচরণ। যেকোনো কাজ খুব নিখুঁতভাবে করতে পারে। ভবিষ্যতে তার সাথে আবারও কাজ করার ইচ্ছা আছে।</p>
-                    </div>
-                </li>
+                <ul class="testimonials-list">
+                    <li class="testimonials-item">
+                        <figure class="testimonials-avatar-box">
+                            <img src="./assets/images/avatar-3.png" alt="মো. মুরসালিন পারভেজ">
+                        </figure>
+                        <h4 class="h4 testimonials-item-title">মো. মুরসালিন পারভেজ</h4>
+                        <span class="testimonials-designation">ইঞ্জিনিয়ার</span>
+                        <div class="testimonials-text">
+                            <p>খুবই প্রফেশনাল এবং ফ্রেন্ডলি আচরণ। যেকোনো কাজ খুব নিখুঁতভাবে করতে পারে। ভবিষ্যতে তার সাথে আবারও কাজ করার ইচ্ছা আছে।</p>
+                        </div>
+                    </li>
 
-                <li class="testimonials-item">
-                    <figure class="testimonials-avatar-box">
-                        <img src="./assets/images/avatar-1.png" alt="রেজা ইসলাম">
-                    </figure>
-                    <h4 class="h4 testimonials-item-title">রেজা ইসলাম</h4>
-                    <span class="testimonials-designation">সমন্বয়ক, এসপিএসবি</span>
-                    <div class="testimonials-text">
-                        <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_6](start_span)[span_6](end_span)।</p>
-                    </div>
-                </li>
+                    <li class="testimonials-item">
+                        <figure class="testimonials-avatar-box">
+                            <img src="./assets/images/avatar-1.png" alt="রেজা ইসলাম">
+                        </figure>
+                        <h4 class="h4 testimonials-item-title">রেজা ইসলাম</h4>
+                        <span class="testimonials-designation">সমন্বয়ক, এসপিএসবি</span>
+                        <div class="testimonials-text">
+                            <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_3](start_span)[span_3](end_span)。</p>
+                        </div>
+                    </li>
 
-                <li class="testimonials-item">
-                    <figure class="testimonials-avatar-box">
-                        <img src="./assets/images/avatar-2.png" alt="আল মামুন">
-                    </figure>
-                    <h4 class="h4 testimonials-item-title">আল মামুন</h4>
-                    <span class="testimonials-designation">সহকারী ব্যবস্থাপক, ইভেন্ট বিভাগ, প্রথম আলো</span>
-                    <div class="testimonials-text">
-                        <p>উৎসবের কাজের হাত খুবই চমৎকার এবং সে সময়মতো প্রজেক্ট ডেলিভারি দেয়। তার ডিজাইন সেন্স দুর্দান্ত!</p>
-                    </div>
-                </li>
-            </ul>
-        </section>
+                    <li class="testimonials-item">
+                        <figure class="testimonials-avatar-box">
+                            <img src="./assets/images/avatar-2.png" alt="আল মামুন">
+                        </figure>
+                        <h4 class="h4 testimonials-item-title">আল মামুন</h4>
+                        <span class="testimonials-designation">সহকারী ব্যবস্থাপক, ইভেন্ট বিভাগ, প্রথম আলো</span>
+                        <div class="testimonials-text">
+                            <p>উৎসবের কাজের হাত খুবই চমৎকার এবং সে সময়মতো প্রজেক্ট ডেলিভারি দেয়। তার ডিজাইন সেন্স দুর্দান্ত!</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
         <!-- ক্লায়েন্ট লোগো সেকশন -->
-        <section class="clients">
-            <h3 class="h3 clients-title">ক্লায়েন্টবৃন্দ[span_7](start_span)[span_7](end_span)</h3>
+        <div class="fade-section">
+            <section class="clients">
+                <h3 class="h3 clients-title">ক্লায়েন্টবৃন্দ[span_4](start_span)[span_4](end_span)</h3>
 
-            <ul class="clients-list">
-                <li class="clients-item">
-                    <a href="#"><img src="./assets/images/logo-1-color.png" alt="ক্লেন্ট লোগো"></a>
-                </li>
-                <li class="clients-item">
-                    <a href="#"><img src="./assets/images/logo-2-color.png" alt="ক্লেন্ট লোগো"></a>
-                </li>
-                <li class="clients-item">
-                    <a href="#"><img src="./assets/images/logo-3-color.png" alt="ক্লেন্ট লোগো"></a>
-                </li>
-                <li class="clients-item">
-                    <a href="#"><img src="./assets/images/logo-4-color.png" alt="ক্লেন্ট লোগো"></a>
-                </li>
-            </ul>
-        </section>
+                <ul class="clients-list">
+                    <li class="clients-item">
+                        <a href="#"><img src="./assets/images/logo-1-color.png" alt="ক্লেন্ট লোগো"></a>
+                    </li>
+                    <li class="clients-item">
+                        <a href="#"><img src="./assets/images/logo-2-color.png" alt="ক্লেন্ট লোগো"></a>
+                    </li>
+                    <li class="clients-item">
+                        <a href="#"><img src="./assets/images/logo-3-color.png" alt="ক্লেন্ট লোগো"></a>
+                    </li>
+                    <li class="clients-item">
+                        <a href="#"><img src="./assets/images/logo-4-color.png" alt="ক্লেন্ট লোগো"></a>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
     </article>
+
+    <script>
+        // স্ক্রল করার সময় ফেড ইন ও ফেড আউট ইফেক্ট নিশ্চিত করার জন্য অবজার্ভার
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view'); // স্ক্রিনের বাইরে চলে গেলে ফেড আউট হবে
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
     `;
 };
