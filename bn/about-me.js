@@ -23,7 +23,7 @@ window.renderSection = function(container) {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* ক্লিক বা ডাউনলোড প্রতিরোধ করতে */
+            pointer-events: none;
         }
 
         .hero-video-overlay {
@@ -64,16 +64,15 @@ window.renderSection = function(container) {
 
         .scroll-down-hint i {
             font-size: 1.2rem;
-            color: #38bdf8;
+            color: var(--primary-color);
             animation: bounce-arrow 1.5s infinite ease-in-out;
         }
 
         @keyframes bounce-arrow {
-            0%, 100% { transform: translateY(0); text-shadow: 0 0 5px #38bdf8; }
-            50% { transform: translateY(6px); text-shadow: 0 0 15px #38bdf8; }
+            0%, 100% { transform: translateY(0); text-shadow: 0 0 5px var(--primary-color); }
+            50% { transform: translateY(6px); text-shadow: 0 0 15px var(--primary-color); }
         }
 
-        /* Article & Section Styles */
         .article-title {
             font-size: 1.8rem;
             font-weight: 800;
@@ -117,7 +116,7 @@ window.renderSection = function(container) {
             margin-bottom: 40px;
         }
 
-        .service-title {
+        .service-title, .testimonials-title, .clients-title {
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-main);
@@ -157,6 +156,8 @@ window.renderSection = function(container) {
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .service-item-title {
@@ -172,12 +173,81 @@ window.renderSection = function(container) {
             line-height: 1.5;
         }
 
-        /* Responsive Design */
+        /* Testimonials Section */
+        .testimonials {
+            margin-bottom: 40px;
+        }
+
+        .testimonials-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonials-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .testimonials-avatar-box img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .testimonials-item-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .testimonials-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Clients Section */
+        .clients {
+            margin-bottom: 20px;
+        }
+
+        .clients-list {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .clients-item img {
+            max-width: 100px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .clients-item img:hover {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .hero-welcome-text {
                 font-size: 1.8rem;
             }
-            .service-list {
+            .service-list, .testimonials-list {
                 grid-template-columns: 1fr;
             }
         }
@@ -214,11 +284,11 @@ window.renderSection = function(container) {
             </p>
 
             <p>
-                আমার সবচেয়ে বড় শখ ও ভালোলাগা হলো কোডিং এবং ওয়েব ডেভেলপমেন্ট। নতুন নতুন ওয়েবসাইট তৈরি, ডিজাইন এবং আধুনিক প্রযুক্তি নিয়ে কাজ করতে আমার ভীষণ ভালো লাগে। কোডিংয়ের পাশাপাশি ভ্রমণ করতে এবং নতুন জায়গা দেখতে আমার দারুণ লাগে। এছাড়া প্রকৃতির সৌন্দর্য ক্যামেরাবন্দি করা আমার আরেকটি প্রিয় শখ। লেখালেখি এবং গল্প পড়া নিয়েও আমার দারুণ আগ্রহ রয়েছে।
+                আমার সবচেয়ে বড় শখ ও ভালোলাগা হলো কোডিং, ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপস তৈরি, ফটোগ্রাফি, লেখালেখি এবং ভ্রমণ। নতুন নতুন জায়গা ঘুরে দেখা এবং অজানা সব সৌন্দর্য এক্সপ্লোর করা আমার একটি নেশা; আমি ঘুরতে ভীষণ ভালোবাসি। ক্যামেরা ফ্রেমে প্রকৃতির বৈচিত্র্য বন্দি করা, সৃজনশীল লেখালেখি করা এবং নতুন প্রযুক্তি নিয়ে কাজ করার মাঝে আমি আনন্দ খুঁজে পাই।
             </p>
 
             <p>
-                আমার মূল লক্ষ্য হলো একজন দক্ষ ওয়েব ডেভেলপার হওয়া। এই লক্ষ্য সামনে রেখে আমি নিয়মিত নতুন জিনিস শিখছি, আমার দক্ষতা উন্নত করছি এবং প্রযুক্তি জগতে সফল ক্যারিয়ার গড়ার জন্য কাজ করে যাচ্ছি।
+                আমার মূল লক্ষ্য হলো একজন দক্ষ ডেভেলপার হওয়া। এই লক্ষ্য সামনে রেখে আমি নিয়মিত নতুন জিনিস শিখছি, আমার দক্ষতা উন্নত করছি এবং প্রযুক্তি জগতে সফল ক্যারিয়ার গড়ার জন্য কাজ করে যাচ্ছি।
             </p>
         </section>
 
@@ -229,7 +299,7 @@ window.renderSection = function(container) {
             <ul class="service-list">
                 <li class="service-item">
                     <div class="service-icon-box">
-                        <i class="fa-solid fa-laptop-code" style="font-size: 22px; color: var(--primary-color);"></i>
+                        <i class="fa-solid fa-laptop-code"></i>
                     </div>
                     <div class="service-content-box">
                         <h4 class="h4 service-item-title">ওয়েব ডিজাইন</h4>
@@ -241,7 +311,7 @@ window.renderSection = function(container) {
 
                 <li class="service-item">
                     <div class="service-icon-box">
-                        <i class="fa-solid fa-code" style="font-size: 22px; color: var(--primary-color);"></i>
+                        <i class="fa-solid fa-code"></i>
                     </div>
                     <div class="service-content-box">
                         <h4 class="h4 service-item-title">ওয়েব ডেভেলপমেন্ট</h4>
@@ -253,26 +323,107 @@ window.renderSection = function(container) {
 
                 <li class="service-item">
                     <div class="service-icon-box">
-                        <i class="fa-solid fa-mobile-screen-button" style="font-size: 22px; color: var(--primary-color);"></i>
+                        <i class="fa-solid fa-mobile-screen-button"></i>
                     </div>
                     <div class="service-content-box">
                         <h4 class="h4 service-item-title">মোবাইল অ্যাপস</h4>
                         <p class="service-item-text">
-                            আইওএস (iOS) এবং অ্যান্ড্রয়েডের জন্য প্রফেশনাল অ্যাপস তৈরি।
+                            অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_0](start_span)[span_0](end_span)।
                         </p>
                     </div>
                 </li>
 
                 <li class="service-item">
                     <div class="service-icon-box">
-                        <i class="fa-solid fa-camera-retro" style="font-size: 22px; color: var(--primary-color);"></i>
+                        <i class="fa-solid fa-camera-retro"></i>
                     </div>
                     <div class="service-content-box">
                         <h4 class="h4 service-item-title">ফটোগ্রাফি</h4>
                         <p class="service-item-text">
-                            প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ।
+                            প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_1](start_span)[span_1](end_span)।
                         </p>
                     </div>
+                </li>
+
+                <li class="service-item">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <div class="service-content-box">
+                        <h4 class="h4 service-item-title">লেখালেখি (Writing)</h4>
+                        <p class="service-item-text">
+                            সৃজনশীল গল্প, আর্টিকেল এবং আকর্ষণীয় কন্টেন্ট রাইটিং।
+                        </p>
+                    </div>
+                </li>
+
+                <li class="service-item">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <div class="service-content-box">
+                        <h4 class="h4 service-item-title">ভ্রমণ ও এক্সপ্লোরিং (Traveling)</h4>
+                        <p class="service-item-text">
+                            নতুন নতুন জায়গা ঘুরে দেখা এবং প্রকৃতির কাছাকাছি থেকে নতুন অভিজ্ঞতা অর্জন করা।
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- টেস্টিমোনিয়াল বা ক্লায়েন্ট রিভিউ সেকশন -->
+        <section class="testimonials">
+            <h3 class="h3 testimonials-title">টেস্টিমোনিয়াল (মতামত)[span_2](start_span)[span_2](end_span)</h3>
+
+            <ul class="testimonials-list">
+                <li class="testimonials-item">
+                    <figure class="testimonials-avatar-box">
+                        <img src="./assets/images/avatar-1.png" alt="রেজা ইসলাম">
+                    </figure>
+                    <h4 class="h4 testimonials-item-title">রেজা ইসলাম</h4>
+                    <div class="testimonials-text">
+                        <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_3](start_span)[span_3](end_span)।</p>
+                    </div>
+                </li>
+
+                <li class="testimonials-item">
+                    <figure class="testimonials-avatar-box">
+                        <img src="./assets/images/avatar-2.png" alt="আব্দুল্লাহ আল মামুন">
+                    </figure>
+                    <h4 class="h4 testimonials-item-title">আব্দুল্লাহ আল মামুন</h4>
+                    <div class="testimonials-text">
+                        <p>উৎসবের কাজের হাত খুবই চমৎকার এবং সে সময়মতো প্রজেক্ট ডেলিভারি দেয়। তার ডিজাইন সেন্স দুর্দান্ত!</p>
+                    </div>
+                </li>
+
+                <li class="testimonials-item">
+                    <figure class="testimonials-avatar-box">
+                        <img src="./assets/images/avatar-3.png" alt="মো. মুরসালিন পারভেজ">
+                    </figure>
+                    <h4 class="h4 testimonials-item-title">মো. মুরসালিন পারভেজ</h4>
+                    <div class="testimonials-text">
+                        <p>খুবই প্রফেশনাল এবং ফ্রেন্ডলি আচরণ। যেকোনো কাজ খুব নিখুঁতভাবে করতে পারে। ভবিষ্যতে তার সাথে আবারও কাজ করার ইচ্ছা আছে।</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ক্লায়েন্ট লোগো সেকশন -->
+        <section class="clients">
+            <h3 class="h3 clients-title">ক্লায়েন্টবৃন্দ[span_4](start_span)[span_4](end_span)</h3>
+
+            <ul class="clients-list">
+                <li class="clients-item">
+                    <a href="#"><img src="./assets/images/logo-1-color.png" alt="ক্লেন্ট লোগো"></a>
+                </li>
+                <li class="clients-item">
+                    <a href="#"><img src="./assets/images/logo-2-color.png" alt="ক্লেন্ট লোগো"></a>
+                </li>
+                <li class="clients-item">
+                    <a href="#"><img src="./assets/images/logo-3-color.png" alt="ক্লেন্ট লোগো"></a>
+                </li>
+                <li class="clients-item">
+                    <a href="#"><img src="./assets/images/logo-4-color.png" alt="ক্লেন্ট লোগো"></a>
                 </li>
             </ul>
         </section>
