@@ -1,0 +1,25 @@
+{
+  "active": true,
+  "startTime": "2026-01-01T00:00:00",
+  "endTime": "2030-12-31T23:59:59",
+  "content": [
+    {
+      "type": "media",
+      "src": "https://via.placeholder.com/600x300",
+      "alt": "Popup Image"
+    },
+    {
+      "type": "heading",
+      "text": "বিশেষ ঘোষণা!"
+    },
+    {
+      "type": "paragraph",
+      "text": "আমার নতুন পোর্টফোলিও ওয়েবসাইটে আপনাকে স্বাগতম। আশা করি প্রজেক্টগুলো আপনাদের ভালো লাগবে। যেকোনো প্রয়োজনে আমার সাথে যোগাযোগ করতে পারেন।"
+    },
+    {
+      "type": "button",
+      "text": "যোগাযোগ করুন",
+      "link": "#contact-me"
+    }
+  ]
+}
