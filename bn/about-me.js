@@ -60,6 +60,12 @@ window.renderSection = function(container) {
             gap: 6px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.8);
             margin-top: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .scroll-down-hint:hover {
+            transform: scale(1.05);
         }
 
         .scroll-down-hint i {
@@ -291,7 +297,7 @@ window.renderSection = function(container) {
             </video>
             <div class="hero-video-overlay">
                 <h1 class="hero-welcome-text">আমার জগতে আপনাকে স্বাগতম।</h1>
-                <div class="scroll-down-hint">
+                <div class="scroll-down-hint" id="scroll-hint-btn">
                     <span>আমার জগৎটি এক্সপ্লোর করতে নিচের দিকে স্ক্রল করুন অথবা মেনুবার থেকে আপনার কাঙ্খিত সেকশনে যান।</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
@@ -299,7 +305,7 @@ window.renderSection = function(container) {
         </div>
 
         <!-- ফেড ইন/আউট ইফেক্ট সহ সেকশনসমূহ -->
-        <div class="fade-section">
+        <div class="fade-section" id="target-about-section">
             <header>
                 <h2 class="h2 article-title">আমার সম্পর্কে</h2>
             </header>
@@ -360,7 +366,7 @@ window.renderSection = function(container) {
                         <div class="service-content-box">
                             <h4 class="h4 service-item-title">মোবাইল অ্যাপস</h4>
                             <p class="service-item-text">
-                                অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_0](start_span)[span_0](end_span)。
+                                অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_0](start_span)[span_0](end_span)।
                             </p>
                         </div>
                     </li>
@@ -372,7 +378,7 @@ window.renderSection = function(container) {
                         <div class="service-content-box">
                             <h4 class="h4 service-item-title">ফটোগ্রাফি</h4>
                             <p class="service-item-text">
-                                প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_1](start_span)[span_1](end_span)。
+                                প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_1](start_span)[span_1](end_span)।
                             </p>
                         </div>
                     </li>
@@ -428,7 +434,7 @@ window.renderSection = function(container) {
                         <h4 class="h4 testimonials-item-title">রেজা ইসলাম</h4>
                         <span class="testimonials-designation">সমন্বয়ক, এসপিএসবি</span>
                         <div class="testimonials-text">
-                            <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_3](start_span)[span_3](end_span)。</p>
+                            <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_3](start_span)[span_3](end_span)।</p>
                         </div>
                     </li>
 
@@ -469,13 +475,25 @@ window.renderSection = function(container) {
         </div>
 
     </article>
+    `;
 
-    <script>
-        // স্ক্রল করার সময় ফেড ইন ও ফেড আউট ইফেক্ট নিশ্চিত করার জন্য অবজার্ভার
+    // স্ক্রল এবং ক্লিক ফাংশনালিটি হ্যান্ডেল করার জন্য
+    setTimeout(() => {
+        // ১. তীর চিহ্ন বা লেখার ওপর ক্লিক করলে স্মুথলি নিচে স্ক্রল করে "আমার সম্পর্কে" সেকশনে চলে যাবে
+        const scrollHintBtn = document.getElementById('scroll-hint-btn');
+        const targetSection = document.getElementById('target-about-section');
+
+        if (scrollHintBtn && targetSection) {
+            scrollHintBtn.addEventListener('click', () => {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // ২. ফেড ইন ও ফেড আউট ইফেক্ট নিশ্চিত করার জন্য ইন্টারসেকশন অবজার্ভার
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
@@ -483,7 +501,7 @@ window.renderSection = function(container) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
                 } else {
-                    entry.target.classList.remove('in-view'); // স্ক্রিনের বাইরে চলে গেলে ফেড আউট হবে
+                    entry.target.classList.remove('in-view');
                 }
             });
         }, observerOptions);
@@ -491,6 +509,5 @@ window.renderSection = function(container) {
         document.querySelectorAll('.fade-section').forEach(section => {
             observer.observe(section);
         });
-    </script>
-    `;
+    }, 100);
 };
