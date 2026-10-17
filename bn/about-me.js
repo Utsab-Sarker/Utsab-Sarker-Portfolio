@@ -85,6 +85,7 @@ window.renderSection = function(container) {
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
             will-change: opacity, transform;
+            scroll-margin-top: 90px; /* হেডার বা মেনুবারের পেছনে যাতে ঢাকা না পড়ে */
         }
 
         .fade-section.in-view {
@@ -279,10 +280,13 @@ window.renderSection = function(container) {
                 height: 75vh;
             }
             .hero-welcome-text {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .service-list, .testimonials-list {
                 grid-template-columns: 1fr;
+            }
+            .fade-section {
+                scroll-margin-top: 110px; /* মোবাইল হেডার স্পেসের জন্য */
             }
         }
     </style>
@@ -304,7 +308,7 @@ window.renderSection = function(container) {
             </div>
         </div>
 
-        <!-- ফেড ইন/আউট ইফেক্ট সহ সেকশনসমূহ -->
+        <!-- মূল সেকশন শুরু -->
         <div class="fade-section" id="target-about-section">
             <header>
                 <h2 class="h2 article-title">আমার সম্পর্কে</h2>
@@ -366,7 +370,31 @@ window.renderSection = function(container) {
                         <div class="service-content-box">
                             <h4 class="h4 service-item-title">মোবাইল অ্যাপস</h4>
                             <p class="service-item-text">
-                                অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট[span_0](start_span)[span_0](end_span)।
+                                অ্যান্ড্রয়েড এবং আইওএসের জন্য প্রফেশনাল ও আধুনিক অ্যাপ্লিকেশন ডেভেলপমেন্ট।।
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">ইভেন্ট অর্গানাইজার</h4>
+                            <p class="service-item-text">
+                                যে কোনো ছোট-বড় প্রোগ্রাম বা ইভেন্ট অত্যন্ত সুন্দর, আকর্ষণীয় ও সুশৃঙ্খলভাবে প্ল্যানিং ও আয়োজন করার দক্ষতা।
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="service-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">সংগঠক</h4>
+                            <p class="service-item-text">
+                                বিভিন্ন সামাজিক ও স্বেচ্ছাসেবামূলক সংগঠনের সাথে সক্রিয়ভাবে যুক্ত থেকে সমাজ উন্নয়ন ও যুব সমাজ গঠনে কাজ করা।
                             </p>
                         </div>
                     </li>
@@ -378,7 +406,7 @@ window.renderSection = function(container) {
                         <div class="service-content-box">
                             <h4 class="h4 service-item-title">ফটোগ্রাফি</h4>
                             <p class="service-item-text">
-                                প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ[span_1](start_span)[span_1](end_span)।
+                                প্রফেশনাল লেভেলে যেকোনো ক্যাটাগরির আকর্ষণীয় ও মানসম্মত ছবি ধারণ।
                             </p>
                         </div>
                     </li>
@@ -400,7 +428,7 @@ window.renderSection = function(container) {
                             <i class="fa-solid fa-plane-departure"></i>
                         </div>
                         <div class="service-content-box">
-                            <h4 class="h4 service-item-title">ভ্রমণ ও এক্সপ্লোরিং (Traveling)</h4>
+                            <h4 class="h4 service-item-title">ভ্রমণ ও এক্সপ্লোরিং</h4>
                             <p class="service-item-text">
                                 নতুন নতুন জায়গা ঘুরে দেখা এবং প্রকৃতির কাছাকাছি থেকে নতুন অভিজ্ঞতা অর্জন করা।
                             </p>
@@ -410,10 +438,10 @@ window.renderSection = function(container) {
             </section>
         </div>
 
-        <!-- টেস্টিমোনিয়াল বা ক্লায়েন্ট রিভিউ সেকশন -->
+        <!-- টেস্টিমোনিয়াল সেকশন -->
         <div class="fade-section">
             <section class="testimonials">
-                <h3 class="h3 testimonials-title">টেস্টিমোনিয়াল (মতামত)[span_2](start_span)[span_2](end_span)</h3>
+                <h3 class="h3 testimonials-title">টেস্টিমোনিয়াল (মতামত)</h3>
 
                 <ul class="testimonials-list">
                     <li class="testimonials-item">
@@ -423,7 +451,7 @@ window.renderSection = function(container) {
                         <h4 class="h4 testimonials-item-title">মো. মুরসালিন পারভেজ</h4>
                         <span class="testimonials-designation">ইঞ্জিনিয়ার</span>
                         <div class="testimonials-text">
-                            <p>খুবই প্রফেশনাল এবং ফ্রেন্ডলি আচরণ। যেকোনো কাজ খুব নিখুঁতভাবে করতে পারে। ভবিষ্যতে তার সাথে আবারও কাজ করার ইচ্ছা আছে।</p>
+                            <p>উৎসবের প্রোগ্রামিং ও সফটওয়্যার ডেভেলপমেন্ট দক্ষতা অত্যন্ত চমৎকার। লজিক্যাল থিংকিং ও ক্লিন কোডিংয়ের মাধ্যমে কঠিন সমস্যা সহজেই সমাধান করতে পারে।</p>
                         </div>
                     </li>
 
@@ -434,7 +462,7 @@ window.renderSection = function(container) {
                         <h4 class="h4 testimonials-item-title">রেজা ইসলাম</h4>
                         <span class="testimonials-designation">সমন্বয়ক, এসপিএসবি</span>
                         <div class="testimonials-text">
-                            <p>উৎসবকে একটি কর্পোরেট আইডেন্টিটি তৈরির জন্য নিয়োগ করা হয়েছিল। তার কাজ দেখে আমরা অত্যন্ত সন্তুষ্ট। তার কাজের অনেক অভিজ্ঞতা রয়েছে এবং ক্লায়েন্টের চাহিদাকে সে খুব গুরুত্ব দেয়[span_3](start_span)[span_3](end_span)।</p>
+                            <p>সংগঠক হিসেবে উৎসবের অবদান প্রশংসনীয়। যেকোনো সামাজিক কাজ বা টিমওয়ার্কে তার নেতৃত্ব দেওয়ার ক্ষমতা ও সমন্বয় করার দক্ষতা চমৎকার।</p>
                         </div>
                     </li>
 
@@ -445,7 +473,7 @@ window.renderSection = function(container) {
                         <h4 class="h4 testimonials-item-title">আল মামুন</h4>
                         <span class="testimonials-designation">সহকারী ব্যবস্থাপক, ইভেন্ট বিভাগ, প্রথম আলো</span>
                         <div class="testimonials-text">
-                            <p>উৎসবের কাজের হাত খুবই চমৎকার এবং সে সময়মতো প্রজেক্ট ডেলিভারি দেয়। তার ডিজাইন সেন্স দুর্দান্ত!</p>
+                            <p>ইভেন্ট ম্যানেজমেন্টে উৎসবের কাজ অত্যন্ত সুশৃঙ্খল। যেকোনো বড় আয়োজন চাপ সামলে নিখুঁতভাবে শেষ করার চমৎকার সামর্থ্য রয়েছে তার।</p>
                         </div>
                     </li>
                 </ul>
@@ -459,16 +487,16 @@ window.renderSection = function(container) {
 
                 <ul class="clients-list">
                     <li class="clients-item">
-                        <a href="#"><img src="./assets/images/logo-1-color.png" alt="ক্লেন্ট লোগো"></a>
+                        <a href="#"><img src="./assets/images/logo-1-color.png" alt="Client Logo"></a>
                     </li>
                     <li class="clients-item">
-                        <a href="#"><img src="./assets/images/logo-2-color.png" alt="ক্লেন্ট লোগো"></a>
+                        <a href="#"><img src="./assets/images/logo-2-color.png" alt="Client Logo"></a>
                     </li>
                     <li class="clients-item">
-                        <a href="#"><img src="./assets/images/logo-3-color.png" alt="ক্লেন্ট লোগো"></a>
+                        <a href="#"><img src="./assets/images/logo-3-color.png" alt="Client Logo"></a>
                     </li>
                     <li class="clients-item">
-                        <a href="#"><img src="./assets/images/logo-4-color.png" alt="ক্লেন্ট লোগো"></a>
+                        <a href="#"><img src="./assets/images/logo-4-color.png" alt="Client Logo"></a>
                     </li>
                 </ul>
             </section>
@@ -477,19 +505,18 @@ window.renderSection = function(container) {
     </article>
     `;
 
-    // স্ক্রল এবং ক্লিক ফাংশনালিটি হ্যান্ডেল করার জন্য
+    // স্ক্রল এবং ক্লিক লজিক
     setTimeout(() => {
-        // ১. তীর চিহ্ন বা লেখার ওপর ক্লিক করলে স্মুথলি নিচে স্ক্রল করে "আমার সম্পর্কে" সেকশনে চলে যাবে
         const scrollHintBtn = document.getElementById('scroll-hint-btn');
         const targetSection = document.getElementById('target-about-section');
 
         if (scrollHintBtn && targetSection) {
             scrollHintBtn.addEventListener('click', () => {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
 
-        // ২. ফেড ইন ও ফেড আউট ইফেক্ট নিশ্চিত করার জন্য ইন্টারসেকশন অবজার্ভার
+           // ফেড ইন ও ফেড আউট অবজার্ভার
         const observerOptions = {
             root: null,
             rootMargin: '0px',
