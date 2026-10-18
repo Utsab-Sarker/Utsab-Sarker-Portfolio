@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +6,14 @@
 
   <title>Utsab Sarker | Official Website &amp; Portfolio</title>
 
-  
-    <!-- Basic SEO -->
+  <!-- Basic SEO -->
   <meta name="author" content="Utsab Sarker">
   <meta name="description"
         content="Welcome to my official website. Here, you can explore my personal projects, web development work, and interests in technology, nature photography, travel, exploration, and writing. This platform showcases my work, ideas, and experiences, reflecting my commitment to continuous learning, creativity, and discovery.">
 
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
-  <meta name="theme-color" content="#0f0f11">
+  <meta name="theme-color" content="#f0f4f8">
 
   <!-- Optional keywords; Google ignores meta keywords for ranking -->
   <meta name="keywords"
@@ -25,9 +23,9 @@
   <link rel="canonical" href="https://utsab.pro.bd/">
 
   <!-- Language alternatives -->
-    <link rel="alternate" hreflang="bn"
+  <link rel="alternate" hreflang="bn"
         href="https://utsab.pro.bd/bn/">
-<link rel="alternate" hreflang="en"
+  <link rel="alternate" hreflang="en"
         href="https://utsab.pro.bd/en/">
   <link rel="alternate" hreflang="x-default"
         href="https://utsab.pro.bd/">
@@ -89,20 +87,18 @@
     "description": "A personal space for technology, web development, photography, travel, and writing—showcasing projects, perspectives, and experiences."
   }
   </script>
-  
 
-  <!-- Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Redirect to Bengali homepage -->
   <script>
     window.setTimeout(function () {
       window.location.replace("./bn/");
-    }, 2500);
+    }, 3500);
   </script>
 
   <style>
@@ -113,11 +109,10 @@
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(
-        circle at center,
-        #1a1a24 0%,
-        #0f0f11 100%
-      );
+      background-color: #f0f4f8;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -125,209 +120,234 @@
       min-height: 100vh;
       min-height: 100dvh;
       overflow: hidden;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       position: relative;
     }
 
-    .particle {
+    /* Floating Modern Blur Orbs */
+    .bg-orb {
       position: absolute;
-      bottom: -10px;
-      background: rgba(255, 219, 112, 0.2);
+      width: 300px;
+      height: 300px;
+      background: rgba(37, 99, 235, 0.05);
+      filter: blur(80px);
       border-radius: 50%;
+      z-index: 1;
       pointer-events: none;
-      animation: floatUp 3s linear infinite;
+      animation: floatOrb 8s ease-in-out infinite alternate;
     }
 
-    .particle:nth-child(1) {
-      left: 10%;
-      width: 8px;
-      height: 8px;
-      animation-duration: 2.5s;
-      animation-delay: 0.2s;
+    .bg-orb:nth-child(2) {
+      width: 250px;
+      height: 250px;
+      background: rgba(59, 130, 246, 0.07);
+      right: 10%;
+      top: 15%;
+      animation-delay: -3s;
     }
 
-    .particle:nth-child(2) {
-      left: 30%;
-      width: 12px;
-      height: 12px;
-      animation-duration: 3.5s;
-      animation-delay: 0.5s;
+    @keyframes floatOrb {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-30px) scale(1.1); }
     }
 
-    .particle:nth-child(3) {
-      left: 50%;
-      width: 6px;
-      height: 6px;
-      animation-duration: 2.8s;
-      animation-delay: 0s;
-    }
-
-    .particle:nth-child(4) {
-      left: 70%;
-      width: 14px;
-      height: 14px;
-      animation-duration: 4s;
-      animation-delay: 0.8s;
-    }
-
-    .particle:nth-child(5) {
-      left: 85%;
-      width: 10px;
-      height: 10px;
-      animation-duration: 3.2s;
-      animation-delay: 0.3s;
-    }
-
+    /* Modern Glassmorphic Console Card */
     .content-box {
       position: relative;
       z-index: 10;
+      text-align: left;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+      max-width: 90%;
+      width: 440px;
+      opacity: 0;
+      animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .terminal-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-left: auto;
+      font-weight: 600;
+    }
+
+    .name-banner {
       text-align: center;
-      padding: 20px;
-      max-width: 100%;
+      margin-bottom: 20px;
     }
 
-    .welcome-text {
-      font-size: 1.1rem;
-      color: #9b9b9b;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      margin-bottom: 12px;
+    .name-en {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+    }
+
+    .name-bn {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-top: 2px;
+    }
+
+    /* Connection Status Console Logs */
+    .console-logs {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .log-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       opacity: 0;
-      animation: fadeInDown 0.8s ease-out forwards;
+      transform: translateY(6px);
+      animation: fadeInLog 0.4s ease forwards;
     }
 
-    .loading-name {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(2.5rem, 8vw, 4.2rem);
-      color: #ffdb70;
-      text-shadow: 0 0 25px rgba(255, 219, 112, 0.5);
-      opacity: 0;
-      display: inline-block;
-      white-space: nowrap;
-      animation:
-        fadeInUp 0.8s ease-out 0.4s forwards,
-        waveAndSwing 2s ease-in-out infinite 1.2s;
+    .log-item:nth-child(1) { animation-delay: 0.3s; }
+    .log-item:nth-child(2) { animation-delay: 1s; }
+    .log-item:nth-child(3) { animation-delay: 1.8s; }
+    .log-item:nth-child(4) { animation-delay: 2.6s; }
+
+    .log-item i {
+      font-size: 0.85rem;
     }
 
-    .loader-bar {
-      width: 180px;
-      max-width: 70vw;
-      height: 3px;
-      background: rgba(255, 219, 112, 0.1);
-      margin: 30px auto 0;
-      border-radius: 3px;
+    .log-success { color: #16a34a; }
+    .log-pending { color: #d97706; }
+
+    /* Sleek Loading Bar */
+    .loader-wrapper {
+      width: 100%;
+      background: #f1f5f9;
+      height: 5px;
+      border-radius: 5px;
       overflow: hidden;
+      position: relative;
     }
 
     .loader-progress {
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, #ffdb70, #ffa100);
-      animation: loadTime 2.5s linear forwards;
+      background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+      background-size: 200% 100%;
+      animation: loadTime 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards, shimmer 2s infinite linear;
       transform-origin: left;
       transform: scaleX(0);
+      border-radius: 5px;
     }
 
-    @keyframes floatUp {
+    @keyframes cardEntrance {
       0% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-105vh) scale(0.5);
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
         transform: translateY(20px);
+        opacity: 0;
       }
       100% {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
       }
     }
 
-    @keyframes waveAndSwing {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-      25% {
-        transform: translateY(-12px) rotate(-4deg);
-      }
-      50% {
-        transform: translateY(0) rotate(0deg);
-      }
-      75% {
-        transform: translateY(12px) rotate(4deg);
+    @keyframes fadeInLog {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
     @keyframes loadTime {
-      0% {
-        transform: scaleX(0);
-      }
-      100% {
-        transform: scaleX(1);
-      }
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
     }
 
-    @media (max-width: 480px) {
-      .welcome-text {
-        font-size: 0.8rem;
-        letter-spacing: 3px;
-      }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .particle,
-      .welcome-text,
-      .loading-name,
-      .loader-progress {
+      .content-box, .log-item, .loader-progress, .bg-orb {
         animation: none;
-      }
-
-      .welcome-text,
-      .loading-name {
         opacity: 1;
+        transform: none;
       }
-
-      .loader-progress {
-        transform: scaleX(1);
-      }
+      .loader-progress { transform: scaleX(1); }
     }
   </style>
 </head>
 
 <body>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
 
   <main class="content-box">
-    <div class="welcome-text">Welcome to my space</div>
+    <div class="terminal-header">
+      <div class="terminal-dot dot-red"></div>
+      <div class="terminal-dot dot-yellow"></div>
+      <div class="terminal-dot dot-green"></div>
+      <div class="terminal-title">system_secure.env</div>
+    </div>
 
-    <h1 class="loading-name">Utsab Sarker</h1>
+    <div class="name-banner">
+      <h1 class="name-en">Utsab Sarker</h1>
+      <div class="name-bn">উৎসব সরকার</div>
+    </div>
 
-    <div class="loader-bar" aria-label="Loading">
+    <div class="console-logs">
+      <div class="log-item">
+        <i class="fa-solid fa-check log-success"></i>
+        <span>Connection Checking: Secure <span style="color:#64748b; font-size:0.75rem;">(কানেকশন সিকিউরড)</span></span>
+      </div>
+      <div class="log-item">
+        <i class="fa-solid fa-spinner fa-spin log-pending"></i>
+        <span>Backend Connecting... <span style="color:#64748b; font-size:0.75rem;">(সার্ভার যুক্ত হচ্ছে...)</span></span>
+      </div>
+      <div class="log-item">
+        <i class="fa-solid fa-shield-halved log-success"></i>
+        <span>SSL Handshake: Verified <span style="color:#64748b; font-size:0.75rem;">(ভেরিফাইড)</span></span>
+      </div>
+      <div class="log-item">
+        <i class="fa-solid fa-terminal log-success"></i>
+        <span>Initializing Environment... <span style="color:#64748b; font-size:0.75rem;">(লোড হচ্ছে...)</span></span>
+      </div>
+    </div>
+
+    <div class="loader-wrapper" aria-label="Loading">
       <div class="loader-progress"></div>
     </div>
   </main>
