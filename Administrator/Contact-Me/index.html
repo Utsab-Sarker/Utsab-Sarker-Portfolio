@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Utsab Sarker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #f0f4f8;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --primary-color: #2563eb;
+      --accent-color: #eff6ff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --shadow-color: rgba(37, 99, 235, 0.12);
+    }
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+    }
+
+    /* Premium Login Page */
+    #loginPage {
+      display: flex; justify-content: center; align-items: center; height: 100vh;
+      background: linear-gradient(135deg, #f0f4f8 0%, #dbeafe 100%);
+    }
+    .login-box {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      padding: 35px 25px; border-radius: 20px; width: 380px;
+      box-shadow: 0 20px 40px var(--shadow-color);
+    }
+    .login-box h3 {
+      text-align: center; color: var(--text-main); margin-bottom: 25px; font-size: 1.4rem; font-weight: 700;
+    }
+    .login-box input[type="text"], .login-box input[type="password"] {
+      width: 100%; padding: 12px 15px; margin: 8px 0 18px 0; background: var(--bg-color);
+      border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; outline: none;
+      transition: border-color 0.3s;
+    }
+    .login-box input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--shadow-color); }
+    .login-box label {
+      font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .login-box button {
+      width: 100%; padding: 12px; background: var(--primary-color); border: none;
+      color: white; font-weight: 700; border-radius: 10px; cursor: pointer; margin-top: 20px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .login-box button:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; height: 75px;
+      background: var(--card-bg); border-bottom: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 30px; z-index: 100; box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    }
+    .header-user { display: flex; align-items: center; gap: 14px; }
+    .header-user img { width: 45px; height: 45px; border-radius: 12px; object-fit: cover; border: 2px solid var(--primary-color); }
+    .header-user-info strong { display: block; font-size: 1.05rem; color: var(--text-main); }
+    .header-user-info span { display: block; font-size: 0.75rem; color: var(--text-muted); }
+    .logout-btn {
+      background: #ef4444; color: white; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; transition: background 0.2s;
+    }
+    .logout-btn:hover { background: #dc2626; }
+
+    /* Main Content */
+    .main-content { margin-top: 100px; padding: 30px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    
+    .admin-tabs { display: flex; gap: 12px; margin-bottom: 25px; }
+    .admin-tab-btn {
+      padding: 12px 24px; background: var(--card-bg); border: 1px solid var(--border-color);
+      color: var(--text-muted); border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.9rem; transition: all 0.3s;
+    }
+    .admin-tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 4px 15px var(--shadow-color); }
+
+    /* Summary Grid */
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px;
+    }
+    .summary-card {
+      background: var(--card-bg); border: 1px solid var(--border-color); padding: 20px;
+      border-radius: 16px; text-align: left; cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02); display: flex; align-items: center; gap: 15px;
+    }
+    .summary-card:hover { border-color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow-color); }
+    .summary-icon-box {
+      width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .summary-card h4 { margin: 0; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .summary-card p { margin: 4px 0 0; font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+    
+    /* Controls & Table */
+    .controls { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .controls input, .controls select {
+      padding: 12px 16px; background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 12px; font-size: 0.9rem; outline: none;
+    }
+    .controls input:focus, .controls select:focus { border-color: var(--primary-color); }
+    
+    .table-container { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    table { width: 100%; border-collapse: collapse; background: var(--card-bg); }
+    th, td { border-bottom: 1px solid var(--border-color); padding: 16px 20px; text-align: left; font-size: 0.9rem; color: var(--text-main); }
+    th { background: var(--accent-color); color: var(--primary-color); font-weight: 700; }
+    tr:hover { background: #f8fafc; }
+    
+    /* Modern Status Badges & Colors */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+    }
+    .status-success { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .status-warning { background: #fef9c3; color: #a16207; border: 1px solid #fef08a; }
+    .status-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+    .status-info { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+
+    /* Modern Popup Modal */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(4px);
+      padding: 15px;
+    }
+    .modal-box {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      padding: 25px; border-radius: 20px; max-width: 550px; width: 100%;
+      max-height: 85vh; display: flex; flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: modalPop 0.3s ease;
+    }
+    .modal-scroll-body {
+      overflow-y: auto; padding-right: 5px; margin-bottom: 15px; flex-grow: 1;
+    }
+    .modal-scroll-body::-webkit-scrollbar { width: 5px; }
+    .modal-scroll-body::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .info-card-box {
+      background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 15px; margin-bottom: 10px;
+    }
+    .info-card-box span { display: block; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+    .info-card-box div { font-size: 0.9rem; color: var(--text-main); word-break: break-word; line-height: 1.5; white-space: pre-wrap; }
+    
+    .modal-box select, .modal-box input[type="text"] {
+      width: 100%; padding: 10px 14px; margin: 4px 0 12px 0; background: var(--bg-color);
+      border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; outline: none; font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login Page -->
+<div id="loginPage">
+  <div class="login-box">
+    <h3><i class="fa-solid fa-shield-halved" style="color: var(--primary-color); margin-right: 8px;"></i> অ্যাডমিন প্যানেল</h3>
+    <input type="text" id="username" placeholder="ইউজারনেম দিন">
+    <input type="password" id="password" placeholder="পাসওয়ার্ড দিন">
+    <label><input type="checkbox" id="rememberMe"> পাসওয়ার্ড মনে রাখুন</label>
+    <button onclick="login()">লগইন করুন</button>
+  </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div id="adminDashboard" style="display:none;">
+  <header>
+    <div class="header-user">
+      <img src="../Utsab Sarker.png" alt="Profile">
+      <div class="header-user-info">
+        <strong>উৎসব সরকার</strong>
+        <span>Website contact management system</span>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</button>
+  </header>
+
+  <div class="main-content">
+    
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" id="tabSummaryBtn" onclick="switchAdminTab('summary')"><i class="fa-solid fa-chart-pie"></i> সামারি</button>
+      <button class="admin-tab-btn" id="tabTableBtn" onclick="switchAdminTab('table')"><i class="fa-solid fa-table-list"></i> তথ্য তালিকা</button>
+    </div>
+
+    <!-- Summary Section -->
+    <div id="summarySection">
+      <h3 style="margin-bottom: 20px; color: var(--text-main); font-weight: 700;">স্ট্যাটাসভিত্তিক বিবরণ</h3>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </div>
+
+    <!-- Table Section -->
+    <div id="tableSection" style="display: none;">
+      <h3 style="margin-bottom: 20px; color: var(--text-main); font-weight: 700;">তথ্য তালিকা</h3>
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="সার্চ (নাম, ইমেইল, মোবাইল, আইডি)" oninput="filterData()">
+        <select id="statusFilter" onchange="filterData()">
+          <option value="ALL">সকল স্ট্যাটাস</option>
+        </select>
+        <select id="sortOrder" onchange="filterData()">
+          <option value="DESC">তারিখ (নতুন থেকে পুরাতন)</option>
+          <option value="ASC">তারিখ (পুরাতন থেকে নতুন)</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ক্রমিক</th>
+              <th>জমার তারিখ</th>
+              <th>নাম</th>
+              <th>মোবাইল</th>
+              <th>ইমেইল</th>
+              <th>স্ট্যাটাস</th>
+              <th>একশন</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Details Modal -->
+<div id="detailsModal" class="modal">
+  <div class="modal-box">
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px; flex-shrink: 0;">
+      <strong id="m_inquiryId" style="color: var(--primary-color); font-size: 1.05rem;"></strong>
+      <span id="m_statusBadge"></span>
+    </div>
+
+    <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom: 15px; flex-shrink: 0;">
+      <i class="fa-regular fa-calendar"></i> <span id="m_date"></span> &nbsp;|&nbsp; <i class="fa-regular fa-clock"></i> <span id="m_time"></span>
+    </div>
+
+    <div class="modal-scroll-body">
+      <div class="info-card-box">
+        <span>প্রাপকের নাম</span>
+        <div id="m_name"></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="info-card-box">
+          <span>মোবাইল নম্বর</span>
+          <div id="m_phone"></div>
+        </div>
+        <div class="info-card-box">
+          <span>ইমেইল ঠিকানা</span>
+          <div id="m_email"></div>
+        </div>
+      </div>
+
+      <div class="info-card-box">
+        <span>বিস্তারিত বার্তা / তথ্য</span>
+        <div id="m_details"></div>
+      </div>
+
+      <div class="info-card-box">
+        <span>এডমিন নোট</span>
+        <div id="m_adminNote" style="color: var(--primary-color);"></div>
+      </div>
+
+      <hr style="border:0; height:1px; background:var(--border-color); margin: 15px 0;">
+      
+      <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-main);">স্ট্যাটাস পরিবর্তন করুন:</label>
+      <select id="m_statusSelect"></select>
+      
+      <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-main);">এডমিন নোট লিখুন:</label>
+      <input type="text" id="m_adminNoteInput" placeholder="নোট লিখুন...">
+    </div>
+
+    <div style="display:flex; gap: 10px; margin-top: auto; flex-shrink: 0;">
+      <button onclick="updateStatus()" style="flex:1; background:var(--primary-color); color: white; border:none; padding:10px; border-radius:10px; font-weight:700; cursor:pointer;">আপডেট করুন</button>
+      <button onclick="closeModal()" style="flex:1; background:var(--text-muted); color:white; border:none; padding:10px; border-radius:10px; font-weight:700; cursor:pointer;">বন্ধ করুন</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJYOT1NYO4uO2vgBt9hi8fMOtXlmyuDlS6AGct-aVXyDJGoXg8vpyVOjhYWfL9U8QeuA/exec";
+  let allData = [];
+  let currentInquiryId = "";
+
+  const STATUS_LIST = [
+    "Submitted", "Received", "Under Review", "Processing", "In Progress",
+    "On Hold", "Waiting for Information", "Assigned", "Verified", "Unverified",
+    "Accepted", "Declined", "Cancelled", "Reopened", "Resolved",
+    "Completed", "Closed", "Escalated", "Failed", "Expired",
+    "Duplicate", "Awaiting Approval", "Awaiting Confirmation", "Refunded", "Archived"
+  ];
+
+  window.onload = function() {
+    const saved = localStorage.getItem('adminAuth');
+    if(saved) {
+      const auth = JSON.parse(saved);
+      document.getElementById('username').value = auth.username;
+      document.getElementById('password').value = auth.password;
+      login();
+    }
+    populateStatusDropdowns();
+  };
+
+  function populateStatusDropdowns() {
+    const sf = document.getElementById('statusFilter');
+    const ms = document.getElementById('m_statusSelect');
+    STATUS_LIST.forEach(s => {
+      sf.innerHTML += `<option value="${s}">${s}</option>`;
+      ms.innerHTML += `<option value="${s}">${s}</option>`;
+    });
+  }
+
+  function switchAdminTab(tab) {
+    const sumSec = document.getElementById('summarySection');
+    const tabSec = document.getElementById('tableSection');
+    const btnSum = document.getElementById('tabSummaryBtn');
+    const btnTab = document.getElementById('tabTableBtn');
+
+    if(tab === 'summary') {
+      sumSec.style.display = 'block';
+      tabSec.style.display = 'none';
+      btnSum.classList.add('active');
+      btnTab.classList.remove('active');
+    } else {
+      sumSec.style.display = 'none';
+      tabSec.style.display = 'block';
+      btnTab.classList.add('active');
+      btnSum.classList.remove('active');
+    }
+  }
+
+  function login() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: "adminLogin", username: u, password: p })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) {
+        if(document.getElementById('rememberMe').checked) {
+          localStorage.setItem('adminAuth', JSON.stringify({ username: u, password: p }));
+        }
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        loadAdminDataBackground();
+      } else {
+        alert(res.message);
+      }
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem('adminAuth');
+    location.reload();
+  }
+
+  function loadAdminDataBackground() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: "getAdminData", username: u, password: p })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) {
+        allData = res.list;
+        renderSummary(res.statusCounts, res.total);
+        filterData();
+      }
+    });
+  }
+
+  function getStatusBadgeHTML(status) {
+    let badgeClass = "status-info";
+    let iconClass = "fa-circle-info";
+
+    const sLower = status.toLowerCase();
+    if(sLower.includes('completed') || sLower.includes('resolved') || sLower.includes('accepted') || sLower.includes('verified')) {
+      badgeClass = "status-success";
+      iconClass = "fa-circle-check";
+    } else if(sLower.includes('hold') || sLower.includes('pending') || sLower.includes('wait') || sLower.includes('review') || sLower.includes('processing') || sLower.includes('progress')) {
+      badgeClass = "status-warning";
+      iconClass = "fa-clock";
+    } else if(sLower.includes('declin') || sLower.includes('cancel') || sLower.includes('fail') || sLower.includes('expir')) {
+      badgeClass = "status-danger";
+      iconClass = "fa-circle-xmark";
+    }
+
+    return `<span class="status-badge ${badgeClass}"><i class="fa-solid ${iconClass}"></i> ${status}</span>`;
+  }
+
+  function formatDateTime(rawDate, rawTime) {
+    let formattedDate = rawDate;
+    let formattedTime = rawTime;
+
+    try {
+      if (rawDate && rawDate.includes('T')) {
+        const dateObj = new Date(rawDate);
+        if (!isNaN(dateObj.getTime())) {
+          formattedDate = dateObj.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+      }
+    } catch (e) { console.log("Date parse err:", e); }
+
+    try {
+      if (rawTime && (rawTime.includes('T') || rawTime.includes('1899'))) {
+        const timeObj = new Date(rawTime);
+        if (!isNaN(timeObj.getTime())) {
+          formattedTime = timeObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+        }
+      }
+    } catch (e) { console.log("Time parse err:", e); }
+
+    return { date: formattedDate, time: formattedTime };
+  }
+
+  function renderSummary(counts, total) {
+    const container = document.getElementById('summaryGrid');
+    
+    container.innerHTML = `
+      <div class="summary-card" onclick="filterByStatus('ALL')">
+        <div class="summary-icon-box" style="background: #e0f2fe; color: #0369a1;"><i class="fa-solid fa-layer-group"></i></div>
+        <div>
+          <h4>মোট জমা</h4>
+          <p>${total}</p>
+        </div>
+      </div>`;
+    
+    for(let s in counts) {
+      let iconBoxStyle = "background: #fef9c3; color: #a16207;";
+      let iconName = "fa-clock";
+
+      const sLower = s.toLowerCase();
+      if(sLower.includes('completed') || sLower.includes('resolved') || sLower.includes('accepted') || sLower.includes('verified')) {
+        iconBoxStyle = "background: #dcfce7; color: #15803d;";
+        iconName = "fa-circle-check";
+      } else if(sLower.includes('declin') || sLower.includes('cancel') || sLower.includes('fail') || sLower.includes('expir')) {
+        iconBoxStyle = "background: #fee2e2; color: #b91c1c;";
+        iconName = "fa-circle-xmark";
+      }
+
+      container.innerHTML += `
+        <div class="summary-card" onclick="filterByStatus('${s}')">
+          <div class="summary-icon-box" style="${iconBoxStyle}"><i class="fa-solid ${iconName}"></i></div>
+          <div>
+            <h4>${s}</h4>
+            <p>${counts[s]}</p>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function filterByStatus(status) {
+    document.getElementById('statusFilter').value = status;
+    switchAdminTab('table');
+    filterData();
+  }
+
+  function filterData() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const st = document.getElementById('statusFilter').value;
+    const sort = document.getElementById('sortOrder').value;
+
+    let filtered = allData.filter(d => {
+      let matchQ = d.name.toLowerCase().includes(q) || d.email.toLowerCase().includes(q) || d.phone.includes(q) || d.inquiryId.toLowerCase().includes(q);
+      let matchSt = (st === 'ALL' || d.status === st);
+      return matchQ && matchSt;
+    });
+
+    if(sort === 'DESC') {
+      filtered.reverse();
+    }
+
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    
+    if(filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">কোনো তথ্য পাওয়া যায়নি।</td></tr>`;
+      return;
+    }
+
+    filtered.forEach((d, idx) => {
+      const dt = formatDateTime(d.date, d.time);
+      
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${idx + 1}</td>
+        <td>${dt.date}</td>
+        <td>${d.name}</td>
+        <td>${d.phone}</td>
+        <td>${d.email}</td>
+        <td>${getStatusBadgeHTML(d.status)}</td>
+        <td><button class="view-btn" style="background:var(--accent-color); color:var(--primary-color); border:1px solid #bfdbfe; padding:8px 14px; border-radius:8px; cursor:pointer; font-weight:700;" title="বিস্তারিত দেখুন"><i class="fa-solid fa-eye"></i></button></td>
+      `;
+
+      // ডেটাসেট ব্যবহার করে বড় ও জটিল টেক্সট বা কোটজনিত এরর এড়ানো হয়েছে
+      tr.querySelector('.view-btn').addEventListener('click', () => openModal(d));
+      tbody.appendChild(tr);
+    });
+  }
+
+  function openModal(d) {
+    currentInquiryId = d.inquiryId;
+    const dt = formatDateTime(d.date, d.time);
+
+    document.getElementById('m_inquiryId').innerText = d.inquiryId;
+    document.getElementById('m_statusBadge').innerHTML = getStatusBadgeHTML(d.status);
+    document.getElementById('m_date').innerText = dt.date;
+    document.getElementById('m_time').innerText = dt.time;
+    document.getElementById('m_name').innerText = d.name;
+    document.getElementById('m_phone').innerText = d.phone;
+    document.getElementById('m_email').innerText = d.email;
+    document.getElementById('m_details').innerText = d.details;
+    document.getElementById('m_adminNote').innerText = d.adminNote || 'কোনো নোট নেই';
+    document.getElementById('m_statusSelect').value = d.status;
+    document.getElementById('m_adminNoteInput').value = d.adminNote || '';
+
+    document.getElementById('detailsModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('detailsModal').style.display = 'none';
+  }
+
+  function updateStatus() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+    const st = document.getElementById('m_statusSelect').value;
+    const note = document.getElementById('m_adminNoteInput').value;
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: "updateStatus",
+        username: u, password: p,
+        inquiryId: currentInquiryId,
+        status: st,
+        adminNote: note
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) {
+        closeModal();
+        loadAdminDataBackground();
+      } else {
+        alert("আপডেট করতে সমস্যা হয়েছে।");
+      }
+    });
+  }
+</script>
+</body>
+</html>
