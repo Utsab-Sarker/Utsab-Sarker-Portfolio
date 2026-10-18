@@ -1,36 +1,132 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome - Utsab Sarker</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <title>Utsab Sarker | Official Website &amp; Portfolio</title>
+
+  <!-- Basic SEO -->
+  <meta name="author" content="Utsab Sarker">
+  <meta name="description"
+        content="Welcome to Utsab Sarker's official website. Explore personal projects, web development, technology, nature photography, travelling, exploration and writing.">
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="theme-color" content="#0f0f11">
+
+  <!-- Optional keywords; Google ignores meta keywords for ranking -->
+  <meta name="keywords"
+        content="Utsab Sarker, Utsab Sarker Rajshahi, Utsab Sarker Prothom Alo, Personal Portfolio, Web Development, Technology, Photography, Nature Photography, Travelling, Exploring, Writing, Content Writing, Blog Writing, Bangladesh, উৎসব সরকার">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://utsab.pro.bd/">
+
+  <!-- Language alternatives -->
+  <link rel="alternate" hreflang="en"
+        href="https://utsab.pro.bd/en/">
+  <link rel="alternate" hreflang="bn"
+        href="https://utsab.pro.bd/bn/">
+  <link rel="alternate" hreflang="x-default"
+        href="https://utsab.pro.bd/">
+
+  <!-- Open Graph: Facebook, Messenger, WhatsApp, Telegram
+       and other platforms that support Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Utsab Sarker">
+  <meta property="og:title"
+        content="Utsab Sarker | Official Website &amp; Portfolio">
+  <meta property="og:description"
+        content="Discover my world of technology, web development, photography, travelling and writing. প্রযুক্তি, ফটোগ্রাফি, ভ্রমণ ও লেখালেখির জগতে স্বাগতম।">
+  <meta property="og:url" content="https://utsab.pro.bd/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+
+  <!-- IMPORTANT: Upload your actual 1200x630 image to this path -->
+  <meta property="og:image"
+        content="https://utsab.pro.bd/assets/social-preview.jpg">
+  <meta property="og:image:secure_url"
+        content="https://utsab.pro.bd/assets/social-preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Utsab Sarker - Personal Portfolio">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Utsab Sarker | Official Website &amp; Portfolio">
+  <meta name="twitter:description"
+        content="Web development, technology, nature photography, travelling and writing.">
+  <meta name="twitter:image"
+        content="https://utsab.pro.bd/assets/social-preview.jpg">
+  <meta name="twitter:image:alt"
+        content="Utsab Sarker - Personal Portfolio">
+
+  <!-- Browser favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="/assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+        href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192"
+        href="/assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180"
+        href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Utsab Sarker",
+    "url": "https://utsab.pro.bd/",
+    "image": "https://utsab.pro.bd/assets/social-preview.jpg",
+    "description": "Personal website covering technology, web development, photography, travelling and writing."
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+  <!-- Redirect to Bengali homepage -->
   <script>
-    setTimeout(function() {
-      window.location.href = "./bn/"; 
+    window.setTimeout(function () {
+      window.location.replace("./bn/");
     }, 2500);
   </script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at center, #1a1a24 0%, #0f0f11 100%);
+      background: radial-gradient(
+        circle at center,
+        #1a1a24 0%,
+        #0f0f11 100%
+      );
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      min-height: 100dvh;
       overflow: hidden;
       font-family: 'Poppins', sans-serif;
       position: relative;
     }
 
-    /* ব্যাকগ্রাউন্ড অ্যানিমেশনের জন্য ভাসমান কণা (Particles) */
     .particle {
       position: absolute;
       bottom: -10px;
@@ -40,21 +136,54 @@
       animation: floatUp 3s linear infinite;
     }
 
-    /* বিভিন্ন সাইজের কণার জন্য কাস্টম অ্যানিমেশন */
-    .particle:nth-child(1) { left: 10%; width: 8px; height: 8px; animation-duration: 2.5s; animation-delay: 0.2s; }
-    .particle:nth-child(2) { left: 30%; width: 12px; height: 12px; animation-duration: 3.5s; animation-delay: 0.5s; }
-    .particle:nth-child(3) { left: 50%; width: 6px; height: 6px; animation-duration: 2.8s; animation-delay: 0s; }
-    .particle:nth-child(4) { left: 70%; width: 14px; height: 14px; animation-duration: 4s; animation-delay: 0.8s; }
-    .particle:nth-child(5) { left: 85%; width: 10px; height: 10px; animation-duration: 3.2s; animation-delay: 0.3s; }
+    .particle:nth-child(1) {
+      left: 10%;
+      width: 8px;
+      height: 8px;
+      animation-duration: 2.5s;
+      animation-delay: 0.2s;
+    }
 
-    /* কন্টেইনার (যা টেক্সটগুলোকে ওপরে রাখবে) */
+    .particle:nth-child(2) {
+      left: 30%;
+      width: 12px;
+      height: 12px;
+      animation-duration: 3.5s;
+      animation-delay: 0.5s;
+    }
+
+    .particle:nth-child(3) {
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 2.8s;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(4) {
+      left: 70%;
+      width: 14px;
+      height: 14px;
+      animation-duration: 4s;
+      animation-delay: 0.8s;
+    }
+
+    .particle:nth-child(5) {
+      left: 85%;
+      width: 10px;
+      height: 10px;
+      animation-duration: 3.2s;
+      animation-delay: 0.3s;
+    }
+
     .content-box {
       position: relative;
       z-index: 10;
       text-align: center;
+      padding: 20px;
+      max-width: 100%;
     }
 
-    /* ওয়েলকাম টেক্সটের ডিজাইন ও অ্যানিমেশন */
     .welcome-text {
       font-size: 1.1rem;
       color: #9b9b9b;
@@ -65,35 +194,38 @@
       animation: fadeInDown 0.8s ease-out forwards;
     }
 
-    /* নামের ডিজাইন ও দোল খাওয়ার অ্যানিমেশন */
     .loading-name {
       font-family: 'Pacifico', cursive;
-      font-size: 4.2rem;
+      font-size: clamp(2.5rem, 8vw, 4.2rem);
       color: #ffdb70;
       text-shadow: 0 0 25px rgba(255, 219, 112, 0.5);
       opacity: 0;
       display: inline-block;
-      animation: fadeInUp 0.8s ease-out 0.4s forwards, waveAndSwing 2s ease-in-out infinite 1.2s;
+      white-space: nowrap;
+      animation:
+        fadeInUp 0.8s ease-out 0.4s forwards,
+        waveAndSwing 2s ease-in-out infinite 1.2s;
     }
 
-    /* প্রিমিয়াম লোডিং বার */
     .loader-bar {
       width: 180px;
+      max-width: 70vw;
       height: 3px;
       background: rgba(255, 219, 112, 0.1);
       margin: 30px auto 0;
       border-radius: 3px;
       overflow: hidden;
     }
+
     .loader-progress {
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, #ffdb70, #ffa100);
       animation: loadTime 2.5s linear forwards;
       transform-origin: left;
+      transform: scaleX(0);
     }
 
-    /* অ্যানিমেশন কি-ফ্রেমসমূহ */
     @keyframes floatUp {
       0% {
         transform: translateY(0) scale(1);
@@ -109,45 +241,93 @@
     }
 
     @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes waveAndSwing {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-12px) rotate(-4deg); }
-      50% { transform: translateY(0) rotate(0deg); }
-      75% { transform: translateY(12px) rotate(4deg); }
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-12px) rotate(-4deg);
+      }
+      50% {
+        transform: translateY(0) rotate(0deg);
+      }
+      75% {
+        transform: translateY(12px) rotate(4deg);
+      }
     }
 
     @keyframes loadTime {
-      0% { transform: scaleX(0); }
-      100% { transform: scaleX(1); }
+      0% {
+        transform: scaleX(0);
+      }
+      100% {
+        transform: scaleX(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-text {
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .particle,
+      .welcome-text,
+      .loading-name,
+      .loader-progress {
+        animation: none;
+      }
+
+      .welcome-text,
+      .loading-name {
+        opacity: 1;
+      }
+
+      .loader-progress {
+        transform: scaleX(1);
+      }
     }
   </style>
 </head>
+
 <body>
-
   <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
 
-  <div class="content-box">
+  <main class="content-box">
     <div class="welcome-text">Welcome to my space</div>
 
-    <div class="loading-name">Utsab Sarker</div>
+    <h1 class="loading-name">Utsab Sarker</h1>
 
-    <div class="loader-bar">
+    <div class="loader-bar" aria-label="Loading">
       <div class="loader-progress"></div>
     </div>
-  </div>
-
+  </main>
 </body>
 </html>
